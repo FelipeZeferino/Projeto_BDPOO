@@ -1,4 +1,4 @@
-package Classes;
+package org.example.Classes;
 
 public class Pokemon {
     private int id;
@@ -11,5 +11,21 @@ public class Pokemon {
         this.nome = nome;
         this.tipo = tipo;
         this.nivel = nivel;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public int getNivel() {
+        return nivel;
     }
 }
