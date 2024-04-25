@@ -1,13 +1,13 @@
 -- -----------------------------------------------------
--- Schema Projeto
+-- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `Projeto` DEFAULT CHARACTER SET utf8 ;
-USE `Projeto` ;
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `Projeto`.`Equipe`
+-- Table `mydb`.`Equipe`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Projeto`.`Equipe` (
+CREATE TABLE IF NOT EXISTS `mydb`.`Equipe` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NULL,
   PRIMARY KEY (`ID`))
@@ -15,65 +15,90 @@ CREATE TABLE IF NOT EXISTS `Projeto`.`Equipe` (
 
 
 -- -----------------------------------------------------
--- Table `Projeto`.`Treinador`
+-- Table `mydb`.`Treinador`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Projeto`.`Treinador` (
+CREATE TABLE IF NOT EXISTS `mydb`.`Treinador` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NULL,
-  `Treinadorcol` VARCHAR(45) NULL,
-  `Equipe_ID_Equipe` INT NOT NULL,
+  `Equipe_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT `fk_Treinador_Equipe`
-    FOREIGN KEY (`Equipe_ID_Equipe`)
-    REFERENCES `Projeto`.`Equipe` (`ID`)
+  CONSTRAINT `fk_Treinador_Equipe1`
+    FOREIGN KEY (`Equipe_ID`)
+    REFERENCES `mydb`.`Equipe` (`ID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `Projeto`.`Pokedex`
+-- Table `mydb`.`Pokedex`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Projeto`.`Pokedex` (
+CREATE TABLE IF NOT EXISTS `mydb`.`Pokedex` (
   `ID` INT NOT NULL AUTO_INCREMENT,
-  `Treinador_ID_Treinador` INT NOT NULL,
+  `Treinador_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
   CONSTRAINT `fk_Pokedex_Treinador1`
-    FOREIGN KEY (`Treinador_ID_Treinador`)
-    REFERENCES `Projeto`.`Treinador` (`ID`)
+    FOREIGN KEY (`Treinador_ID`)
+    REFERENCES `mydb`.`Treinador` (`ID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `Projeto`.`Pokemano`
+-- Table `mydb`.`Pokemano`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Projeto`.`Pokemano` (
+CREATE TABLE IF NOT EXISTS `mydb`.`Pokemano` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NULL,
   `Tipo` VARCHAR(45) NULL,
-  `Nivel` VARCHAR(45) NULL,
-  PRIMARY KEY (`ID`))
-;
+  `Nivel` INT NULL,
+  PRIMARY KEY (`ID`));
 
 
 -- -----------------------------------------------------
--- Table `Projeto`.`Pokemano_has_Pokedex`
+-- Table `mydb`.`Pokemano_has_Pokedex`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Projeto`.`Pokemano_has_Pokedex` (
+CREATE TABLE IF NOT EXISTS `mydb`.`Pokemano_has_Pokedex` (
   `Pokemano_ID` INT NOT NULL,
   `Pokedex_ID` INT NOT NULL,
   PRIMARY KEY (`Pokemano_ID`, `Pokedex_ID`),
   CONSTRAINT `fk_Pokemano_has_Pokedex_Pokemano1`
     FOREIGN KEY (`Pokemano_ID`)
-    REFERENCES `Projeto`.`Pokemano` (`ID`)
+    REFERENCES `mydb`.`Pokemano` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Pokemano_has_Pokedex_Pokedex1`
     FOREIGN KEY (`Pokedex_ID`)
-    REFERENCES `Projeto`.`Pokedex` (`ID`)
+    REFERENCES `mydb`.`Pokedex` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Habilidade`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Habilidade` (
+  `ID` INT NOT NULL,
+  `Dano` INT NULL,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Tipo_de_Dano` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ID`));
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Pokemano_has_Habilidade`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Pokemano_has_Habilidade` (
+  `Pokemano_ID` INT NOT NULL,
+  `Habilidade_ID` INT NOT NULL,
+  PRIMARY KEY (`Pokemano_ID`, `Habilidade_ID`),
+  CONSTRAINT `fk_Pokemano_has_Habilidade_Pokemano1`
+    FOREIGN KEY (`Pokemano_ID`)
+    REFERENCES `mydb`.`Pokemano` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Pokemano_has_Habilidade_Habilidade1`
+    FOREIGN KEY (`Habilidade_ID`)
+    REFERENCES `mydb`.`Habilidade` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ;
-
