@@ -40,4 +40,5 @@ public class Main {
         equipeDAO.selectEquipe();
         System.out.println();
     }
+
 }
