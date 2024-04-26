@@ -5,12 +5,15 @@ public class Equipe {
     private String nome;
 
 
-    // Construtor
+    // Construtores
     public Equipe(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
+    public Equipe(String nome) {
+        this.nome = nome;
+    }
 
     // Getters
     public int getId() {

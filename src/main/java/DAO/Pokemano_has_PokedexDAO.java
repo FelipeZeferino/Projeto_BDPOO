@@ -95,6 +95,6 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
 //            }
 //        }
 //        return pokedexs;
-    }
-}
+ //   }
 
+}
