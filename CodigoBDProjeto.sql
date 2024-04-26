@@ -102,3 +102,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Pokemano_has_Habilidade` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ;
+
+
+insert into equipe (nome) values ('vermelho');
+insert into equipe (nome) values ('verde');
+insert into equipe (nome) values ('azul');
