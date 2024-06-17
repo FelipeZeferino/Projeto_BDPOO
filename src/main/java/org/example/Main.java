@@ -3,7 +3,9 @@ package org.example;
 import DAO.*;
 import Model.Equipe;
 import Model.Treinador;
+import Model.Pokedex;
 import org.example.Classes.Habilidade;
+
 
 
 import java.util.Scanner;
@@ -45,12 +47,12 @@ public class Main {
             //equipeDAO.insertEquipe(equipeTeste);
 
             //HabilidadeDAO - TESTADO
-        Habilidade habilidade = new Habilidade(1, 50, "Fireball", "Fogo");
-        habilidadeDAO.selectHabilidade();
-        habilidadeDAO.insertHabilidade(habilidade);
-        habilidadeDAO.selectHabilidade();
-        habilidadeDAO.deleteHabilidade(1);
-        habilidadeDAO.selectHabilidade();
+//        Habilidade habilidade = new Habilidade(1, 50, "Fireball", "Fogo");
+//        habilidadeDAO.selectHabilidade();
+//        habilidadeDAO.insertHabilidade(habilidade);
+//        habilidadeDAO.selectHabilidade();
+//        habilidadeDAO.deleteHabilidade(1);
+//        habilidadeDAO.selectHabilidade();
 
 
             //PokemonDAO - TESTADO
@@ -69,6 +71,17 @@ public class Main {
 //        treinadorDAO.selectTreinador();
 //        treinadorDAO.deleteTreinador(1);
 //        treinadorDAO.selectTreinador();
+
+
+            //PokedexDAO - TESTADO
+//        Treinador treinador = new Treinador(13, "FELIPE", 2);
+//        treinadorDAO.insertTreinador(treinador);
+//        Pokedex pokedex = new Pokedex(1, 1);
+//        pokedexDAO.selectPokedex();
+//        pokedexDAO.insertPokedex(pokedex);
+//        pokedexDAO.selectPokedex();
+//        pokedexDAO.deletePokedex(1);
+//        pokedexDAO.selectPokedex();
 
 //
 //        System.out.println("-----Menu-----");
