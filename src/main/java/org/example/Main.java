@@ -2,10 +2,11 @@ package org.example;
 
 import DAO.*;
 import Model.Equipe;
+import Model.Pokemano_has_Pokedex;
 import Model.Treinador;
 import Model.Pokedex;
 import org.example.Classes.Habilidade;
-
+import org.example.Classes.Pokemon;
 
 
 import java.util.Scanner;
@@ -21,6 +22,7 @@ public class Main {
         TreinadorDAO treinadorDAO = new TreinadorDAO();
         PokemanoDAO pokemanoDAO = new PokemanoDAO();
         HabilidadeDAO habilidadeDAO = new HabilidadeDAO();
+        Pokemano_has_PokedexDAO PokemanoHasPokedexDAO = new Pokemano_has_PokedexDAO();
 
         Scanner scanner = new Scanner(System.in);
         int entrada;
@@ -56,9 +58,9 @@ public class Main {
 
 
             //PokemonDAO - TESTADO
-//            Pokemon pokemonteste = new Pokemon(1, "Teste" ,"Fogo", 12);
+            Pokemon pokemonteste = new Pokemon(1, "Teste" ,"Fogo", 12);
 //            pokemanoDAO.selectPokemon();
-//            pokemanoDAO.insertPokemano(pokemonteste);
+            pokemanoDAO.insertPokemano(pokemonteste);
 //            pokemanoDAO.selectPokemon();
 //            pokemanoDAO.deletePokemon(1);
 //            pokemanoDAO.selectPokemon();
@@ -76,12 +78,21 @@ public class Main {
             //PokedexDAO - TESTADO
 //        Treinador treinador = new Treinador(13, "FELIPE", 2);
 //        treinadorDAO.insertTreinador(treinador);
-//        Pokedex pokedex = new Pokedex(1, 1);
+        Pokedex pokedex = new Pokedex(1, 1);
 //        pokedexDAO.selectPokedex();
-//        pokedexDAO.insertPokedex(pokedex);
+        pokedexDAO.insertPokedex(pokedex);
 //        pokedexDAO.selectPokedex();
 //        pokedexDAO.deletePokedex(1);
 //        pokedexDAO.selectPokedex();
+
+
+        //PokemanoHasPokedex
+
+        Pokemano_has_Pokedex pokemaoHas = new Pokemano_has_Pokedex(1, 2);
+        PokemanoHasPokedexDAO.insertPokemano_has_Pokedex(pokemaoHas);
+        PokemanoHasPokedexDAO.selectPokemano_has_Pokedex();
+
+
 
 //
 //        System.out.println("-----Menu-----");
