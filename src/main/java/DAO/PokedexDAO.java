@@ -38,9 +38,9 @@ public class PokedexDAO extends ConnectionDAO{
 
 
     //DELETE
-    public boolean deleteEquipe(int id) {
+    public boolean deletePokedex(int id) {
         connectToDB();
-        String sql = "DELETE FROM Equipe where id=?";
+        String sql = "DELETE FROM Pokedex where id=?";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1, id);

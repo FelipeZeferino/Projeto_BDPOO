@@ -14,7 +14,7 @@ public class Habilidade {
         TipoDeDano = tipoDeDano;
     }
 
-    public int getIdHabilidade() {
+    public int getId() {
         return IdHabilidade;
     }
 
@@ -26,7 +26,7 @@ public class Habilidade {
         return Nome;
     }
 
-    public String getTipoDeDano() {
+    public String getTipo_de_dano() {
         return TipoDeDano;
     }
 }

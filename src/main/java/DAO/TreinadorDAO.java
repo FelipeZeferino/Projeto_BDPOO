@@ -101,7 +101,7 @@ public class TreinadorDAO extends ConnectionDAO{
 
                 System.out.println("id = " + treinadorAux.getId());
                 System.out.println("nome = " + treinadorAux.getNome());
-                System.out.println("treinador ID = " + treinadorAux.getEquipe_ID());
+                System.out.println("ID da equipe = " + treinadorAux.getEquipe_ID());
                 System.out.println("--------------------------------");
 
                 treinadores.add(treinadorAux);
