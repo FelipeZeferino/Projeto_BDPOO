@@ -46,7 +46,7 @@ public class EquipeDAO extends ConnectionDAO{
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {
-            System.out.println("Erro = " + ex.getMessage());
+            System.out.println("Erro: " + ex.getMessage());
             sucesso = false;
         } finally {
             try {
@@ -69,7 +69,7 @@ public class EquipeDAO extends ConnectionDAO{
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {
-            System.out.println("Erro = " + ex.getMessage());
+            System.out.println("Erro: " + ex.getMessage());
             sucesso = false;
         } finally {
             try {
@@ -92,14 +92,15 @@ public class EquipeDAO extends ConnectionDAO{
             st = con.createStatement();
             rs = st.executeQuery(sql);
 
-            System.out.println("Lista de equipes: ");
+            System.out.println("Lista de Equipes: ");
 
             while (rs.next()) {
 
                 Equipe equipeAux = new Equipe(rs.getInt("id"), rs.getString("nome"));
 
-                System.out.println("id = " + equipeAux.getId());
-                System.out.println("nome = " + equipeAux.getNome());
+                System.out.println("--------------------------------");
+                System.out.println("ID Equipe: " + equipeAux.getId());
+                System.out.println("Nome Equipe: " + equipeAux.getNome());
                 System.out.println("--------------------------------");
 
                 equipes.add(equipeAux);

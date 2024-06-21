@@ -1,5 +1,4 @@
 package Model;
-
 public class Pokedex {
     private int id;
     private int treinador_ID;

@@ -11,7 +11,7 @@ public abstract class ConnectionDAO {
 
     String database = "mydb";//nome do BD
     String user = "root";
-    String password = "Ba@1123456";
+    String password = "root";
     String url = "jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
 
 

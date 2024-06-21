@@ -13,6 +13,10 @@ public class Treinador {
         this.equipe_ID = equipe_ID;
     }
 
+    public Treinador(String nome) {
+        this.nome = nome;
+    }
+
     //Getters
     public int getId() {
         return id;

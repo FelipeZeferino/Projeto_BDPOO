@@ -10,10 +10,10 @@ public class Equipe {
         this.id = id;
         this.nome = nome;
     }
-
     public Equipe(String nome) {
         this.nome = nome;
     }
+
 
     // Getters
     public int getId() {

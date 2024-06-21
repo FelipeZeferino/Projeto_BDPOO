@@ -1,6 +1,5 @@
 package DAO;
 
-import Model.Pokedex;
 import Model.Pokemano_has_Pokedex;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,30 +35,28 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
         return sucesso;
     }
 
+    public boolean insertPokemano (int ID) {
+        connectToDB();
 
-
-//    //DELETE
-//    public boolean deletePokedex_has_Pokemano(int id) {
-//        connectToDB();
-//        String sql = "DELETE FROM Pokedex_has_Pokemano where id=?";
-//        try {
-//            pst = con.prepareStatement(sql);
-//            pst.setInt(1, id);
-//            pst.execute();
-//            sucesso = true;
-//        } catch (SQLException ex) {
-//            System.out.println("Erro = " + ex.getMessage());
-//            sucesso = false;
-//        } finally {
-//            try {
-//                con.close();
-//                pst.close();
-//            } catch (SQLException exc) {
-//                System.out.println("Erro: " + exc.getMessage());
-//            }
-//        }
-//        return sucesso;
-//    }
+        String sql = "INSERT INTO Pokemano_has_Pokedex (pokemano_ID) values(?)";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, ID);
+            pst.execute();
+            sucesso = true;
+        } catch (SQLException exc) {
+            System.out.println("Erro: " + exc.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch (SQLException exc) {
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
+        return sucesso;
+    }
 
     //SELECT
     public ArrayList<Pokemano_has_Pokedex> selectPokemano_has_Pokedex() {
@@ -77,8 +74,8 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
 
                 Pokemano_has_Pokedex pokedexAux = new Pokemano_has_Pokedex(rs.getInt("id"), rs.getInt("treinador_ID"));
 
-                System.out.println("id dos Pokemons da Pokedex:  " + pokedexAux.getPokemano_ID());
-                System.out.println("Id da pokedex: " + pokedexAux.getPokedex_ID());
+                System.out.println("ID dos Pokemons da Pokedex:  " + pokedexAux.getPokemano_ID());
+                System.out.println("ID da pokedex: " + pokedexAux.getPokedex_ID());
                 System.out.println("--------------------------------");
             }
             sucesso = true;

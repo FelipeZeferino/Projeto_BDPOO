@@ -1,8 +1,6 @@
 package DAO;
 
-
-import org.example.Classes.Habilidade;
-
+import Model.Habilidade;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

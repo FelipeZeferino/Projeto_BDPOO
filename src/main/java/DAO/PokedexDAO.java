@@ -47,7 +47,7 @@ public class PokedexDAO extends ConnectionDAO{
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {
-            System.out.println("Erro = " + ex.getMessage());
+            System.out.println("Erro: " + ex.getMessage());
             sucesso = false;
         } finally {
             try {
@@ -76,8 +76,8 @@ public class PokedexDAO extends ConnectionDAO{
 
                 Pokedex pokedexAux = new Pokedex(rs.getInt("id"), rs.getInt("treinador_ID"));
 
-                System.out.println("id = " + pokedexAux.getId());
-                System.out.println("treinador_ID = " + pokedexAux.getTreinador_ID());
+                System.out.println("ID = " + pokedexAux.getId());
+                System.out.println("Treinador_ID = " + pokedexAux.getTreinador_ID());
                 System.out.println("--------------------------------");
 
                 pokedexs.add(pokedexAux);

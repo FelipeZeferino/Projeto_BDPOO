@@ -104,6 +104,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Pokemano_has_Habilidade` (
 ;
 
 
-insert into equipe (nome) values ('vermelho');
-insert into equipe (nome) values ('verde');
-insert into equipe (nome) values ('azul');
+insert into equipe (nome) values ('Vermelho');
+insert into equipe (nome) values ('Verde');
+insert into equipe (nome) values ('Azul');
+
+insert into pokemano (nome,tipo,nivel) values ('Pokemon A', 'Tipo A', 10);
+insert into pokemano (nome,tipo,nivel) values ('Pokemon B', 'Tipo B', 10);
+insert into pokemano (nome,tipo,nivel) values ('Pokemon C', 'Tipo C', 10);
+insert into pokemano (nome,tipo,nivel) values ('Pokemon D', 'Tipo D', 10);
+
+select * from pokemano;

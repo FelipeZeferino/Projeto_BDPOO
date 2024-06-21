@@ -1,8 +1,7 @@
 package DAO;
 
 
-import org.example.Classes.Pokemon;
-
+import Model.Pokemano;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,17 +12,17 @@ public class PokemanoDAO extends ConnectionDAO {
     boolean sucesso = false; //Para saber se funcionou
 
     //INSERT
-    public boolean insertPokemano(Pokemon pokemon) {
+    public boolean insertPokemano(Pokemano pokemano) {
 
         connectToDB();
 
         String sql = "INSERT INTO Pokemano (id, nome, tipo, nivel) values(?,?,?,?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1,pokemon.getId());
-            pst.setString(2, pokemon.getNome());
-            pst.setString(3, pokemon.getTipo());
-            pst.setInt(4, pokemon.getNivel());
+            pst.setInt(1,pokemano.getId());
+            pst.setString(2, pokemano.getNome());
+            pst.setString(3, pokemano.getTipo());
+            pst.setInt(4, pokemano.getNivel());
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -40,7 +39,28 @@ public class PokemanoDAO extends ConnectionDAO {
         return sucesso;
     }
 
-
+    public boolean updateNivelPokemano(int idPokemano, int nivelNovo) {
+        connectToDB();
+        String sql = "UPDATE Pokemano SET nivel=? where id = ?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, idPokemano);
+            pst.setInt(2, nivelNovo);
+            pst.execute();
+            sucesso = true;
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch (SQLException exc) {
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
+        return sucesso;
+    }
 
     //DELETE
     public boolean deletePokemon(int id) {
@@ -52,7 +72,7 @@ public class PokemanoDAO extends ConnectionDAO {
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {
-            System.out.println("Erro = " + ex.getMessage());
+            System.out.println("Erro: " + ex.getMessage());
             sucesso = false;
         } finally {
             try {
@@ -66,8 +86,8 @@ public class PokemanoDAO extends ConnectionDAO {
     }
 
     //SELECT
-    public ArrayList<Pokemon> selectPokemon() {
-        ArrayList<Pokemon> pokemons = new ArrayList<>();
+    public ArrayList<Pokemano> selectPokemano() {
+        ArrayList<Pokemano> pokemanos = new ArrayList<>();
         connectToDB();
         String sql = "SELECT * FROM Pokemano";
 
@@ -75,19 +95,19 @@ public class PokemanoDAO extends ConnectionDAO {
             st = con.createStatement();
             rs = st.executeQuery(sql);
 
-            System.out.println("Lista de Pokemons: ");
+            System.out.println("Lista de Pokemanos: ");
 
             while (rs.next()) {
 
-                Pokemon pokemanoAux = new Pokemon(rs.getInt("id"), rs.getString("nome"),  rs.getString("tipo"),rs.getInt("nivel"));
+                Pokemano pokemanoAux = new Pokemano(rs.getInt("id"), rs.getString("nome"),  rs.getString("tipo"),rs.getInt("nivel"));
 
-                System.out.println("id = " + pokemanoAux.getId());
-                System.out.println("nome = " + pokemanoAux.getNome());
+                System.out.println("ID = " + pokemanoAux.getId());
+                System.out.println("Nome = " + pokemanoAux.getNome());
                 System.out.println("Tipo = " + pokemanoAux.getTipo());
                 System.out.println("Nivel = " + pokemanoAux.getNivel());
                 System.out.println("--------------------------------");
 
-                pokemons.add(pokemanoAux);
+                pokemanos.add(pokemanoAux);
             }
             sucesso = true;
         } catch (SQLException e) {
@@ -101,6 +121,6 @@ public class PokemanoDAO extends ConnectionDAO {
                 System.out.println("Erro: " + e.getMessage());
             }
         }
-        return pokemons;
+        return pokemanos;
     }
 }
