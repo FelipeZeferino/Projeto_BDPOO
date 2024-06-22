@@ -36,36 +36,13 @@ public class TreinadorDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    public boolean insertTreinadorNovo (String nome){
+    public boolean insertTreinadorNovo (String nome, int ID){
         connectToDB();
-        String sql = "INSERT INTO Treinador (nome) values(?)";
+        String sql = "INSERT INTO Treinador (nome, Equipe_ID) values(?, ?)";
         try {
             pst = con.prepareStatement(sql);
             pst.setString(1,nome);
-
-            pst.execute();
-            sucesso = true;
-        } catch (SQLException exc) {
-            System.out.println("Erro: " + exc.getMessage());
-            sucesso = false;
-        } finally {
-            try {
-                con.close();
-                pst.close();
-            } catch (SQLException exc) {
-                System.out.println("Erro: " + exc.getMessage());
-            }
-        }
-        return sucesso;
-    }
-
-    public boolean insertTreinadorEquipe (int ID){
-        connectToDB();
-        String sql = "INSERT INTO Treinador (Equipe_ID) values(?)";
-        try {
-            pst = con.prepareStatement(sql);
             pst.setInt(1,ID);
-
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -81,6 +58,29 @@ public class TreinadorDAO extends ConnectionDAO{
         }
         return sucesso;
     }
+
+//    public boolean insertTreinadorEquipe (int ID){
+//        connectToDB();
+//        String sql = "INSERT INTO Treinador (Equipe_ID) values(?)";
+//        try {
+//            pst = con.prepareStatement(sql);
+//            pst.setInt(1,ID);
+//
+//            pst.execute();
+//            sucesso = true;
+//        } catch (SQLException exc) {
+//            System.out.println("Erro: " + exc.getMessage());
+//            sucesso = false;
+//        } finally {
+//            try {
+//                con.close();
+//                pst.close();
+//            } catch (SQLException exc) {
+//                System.out.println("Erro: " + exc.getMessage());
+//            }
+//        }
+//        return sucesso;
+//    }
 
     //UPDATE
     public boolean updateTreinadorNome(int id, String nome) {
