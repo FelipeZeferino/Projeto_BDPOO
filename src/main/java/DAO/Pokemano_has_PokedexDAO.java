@@ -38,8 +38,7 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
 
     public boolean deletePokemon(int id) {
         connectToDB();
-        String sql = "\n" +
-                "DELETE FROM pokemano_has_pokedex WHERE Pokemano_ID = ? AND Pokedex_ID = 1";
+        String sql = "DELETE FROM pokemano_has_pokedex WHERE Pokemano_ID = ? AND Pokedex_ID = 1";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1, id);
@@ -144,7 +143,7 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
         } finally {
             try {
                 con.close();
-                st.close();
+                pst.close();
             } catch (SQLException e) {
                 System.out.println("Erro: " + e.getMessage());
             }

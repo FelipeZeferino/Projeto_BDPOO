@@ -77,7 +77,7 @@ public class HabilidadeDAO extends ConnectionDAO {
 
             while (rs.next()) {
 
-                Habilidade habilidadeAux = new Habilidade(rs.getInt("id"), rs.getInt("dano"),  rs.getString("nome"),rs.getString("tipo_de_dano"));
+                Habilidade habilidadeAux = new Habilidade(rs.getInt("ID"), rs.getInt("Dano"),  rs.getString("Nome"),rs.getString("Tipo_de_Dano"));
 
                 System.out.println("id = " + habilidadeAux.getId());
                 System.out.println("Dano = " + habilidadeAux.getDano());

@@ -10,15 +10,12 @@ public class Habilidade {
 
     // Construtor
     public Habilidade(int id, int dano, String nome, String tipo_de_dano) {
-        SkillCounter = id;
+        this.id = id;
         this.dano = dano;
         this.nome = nome;
         this.tipo_de_dano = tipo_de_dano;
     }
 
-    public void increaseCounter(){
-        SkillCounter++;
-    }
 
     // Getters
 

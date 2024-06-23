@@ -9,14 +9,6 @@ import static java.lang.Integer.parseInt;
 
 public class Main {
 
-    // Instanciando as classes
-//    private static Equipe equipe;
-//    private static Treinador treinador;
-//    private static Pokedex pokedex;
-//    private static Pokemano pokemano;
-//    private static Habilidade habilidade;
-//    private static Treinador nomeNovoTreinador;
-//    private static Treinador idEquipeSelecionada;
 
     private static EquipeDAO equipeDAO = new EquipeDAO();
     private static TreinadorDAO treinadorDAO = new TreinadorDAO();
@@ -36,14 +28,8 @@ public class Main {
         boolean running = true;
 
 
-//        Pokemano squirtle = new Pokemano(1,"Squirtle", "Água", 1);
-//        Pokemano charmander = new Pokemano(2,"Charmander", "Fogo", 1);
-//        Pokemano bulbasaur = new Pokemano(3,"Bulbasaur", "Planta", 1);
         treinadorDAO.deleteTreinador(1);
-        treinadorDAO.selectTreinador();
-        pokedexDAO.selectPokedex();
-        pokemano_has_pokedexDAO.selectPokemano_has_Pokedex();
-        pokemanoDAO.selectPokemano();
+
         // Menu inicial
         System.out.println("---------- Bem-vindo ao menu! ----------");
 
@@ -88,8 +74,7 @@ public class Main {
             System.out.println(" 6. Criar uma nova habilidade");
             System.out.println(" 7. Adicionar uma habilidade a algum Pokemon");
             System.out.println(" 8. Para alterar seu nome de treinador");
-            System.out.println(" 9. Criar novo treinador");
-            System.out.println(" 10. Sair");
+            System.out.println(" 9. Sair");
             System.out.println("--------------------------\n");
 
 
@@ -108,7 +93,7 @@ public class Main {
                     System.out.println("Entre com o nível do Pokemon:");
                     int nivel = scanner.nextInt();
 
-                    Pokemano NewPokemon = new Pokemano(id,nome,tipo,nivel);//Primeiro de tudo: ao Criar um pokemon, ele Nao vai diretamente para sua pokedex, ele vai para lista de okemons
+                    Pokemano NewPokemon = new Pokemano(id,nome,tipo,nivel);
                     pokemanoDAO.insertPokemano(NewPokemon);
 
                     break;
@@ -134,10 +119,10 @@ public class Main {
                     System.out.println("-> Segue abaixo, lista de pokemons disponíveis para selecao: \n");
                     pokemanoDAO.selectPokemano();
                     System.out.print("-> Digite o ID do pokemano que deseja alterar o nivel: ");
-                    id = scanner.nextInt();
+                    int ChosenId = scanner.nextInt();
                     System.out.print("-> Novo nivel do pokemano: ");
                     int nivelNovo = scanner.nextInt();
-                    pokemanoDAO.updateNivelPokemano(nivelNovo,id);
+                    pokemanoDAO.updateNivelPokemano(nivelNovo,ChosenId);
                     break;
                 case 6:
                     System.out.println("Criar habilidade");
@@ -147,8 +132,9 @@ public class Main {
                     String SkillType = scanner.nextLine();
                     System.out.println("Entre com o dano da habilidade:");
                     int SkillDmg = scanner.nextInt();
-                    Habilidade habilidade = new Habilidade(Habilidade.SkillCounter,SkillDmg,SkillName,SkillType);
-                    habilidade.increaseCounter();
+                    System.out.println("Entre com o id da habilidade:");
+                    int NewSkillID = scanner.nextInt();
+                    Habilidade habilidade = new Habilidade(NewSkillID,SkillDmg,SkillName,SkillType);
                     habilidadeDAO.insertHabilidade(habilidade);
                     System.out.println("Habilidade Criada!");
                     break;
@@ -173,8 +159,6 @@ public class Main {
                     treinadorDAO.updateTreinadorNome(treinador.getId(), newName);
                     break;
                 case 9:
-                    break;
-                case 10:
                     running = false;
                     break;
 
