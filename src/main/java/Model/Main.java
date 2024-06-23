@@ -72,15 +72,12 @@ public class Main {
         System.out.println("-> Seu pokemano foi adicionado a sua pokedex!");
         System.out.println("--------------------------\n");
         pokedexDAO.selectPokedex();
-        pokemano_has_pokedexDAO.selectPokemano_has_Pokedex(treinador.getId());
+        pokemano_has_pokedexDAO.selectPokemano_has_Pokedex(1);
 
         System.out.println("Muito bem! Você passou da etapa inicial! Agora você pode escolher uma das opções abaixo!");
         System.out.println("\n");
 
         while (running) {
-
-
-
 
 
             // Menu 3
@@ -95,20 +92,41 @@ public class Main {
 
             int userInput;
             userInput = scanner.nextInt();
-            scanner.nextLine();
+            //scanner.nextLine();
 
             switch (userInput) {
                 case 1:
+                    System.out.println("Entre com o id do Pokemon:");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Entre com o nome do Pokemon:");
+                    String nome = scanner.nextLine();
+                    System.out.println("Entre com o tipo do Pokemon:");
+                    String tipo = scanner.nextLine();
+                    System.out.println("Entre com o nível do Pokemon:");
+                    int nivel = scanner.nextInt();
+
+                    Pokemano NewPokemon = new Pokemano(id,nome,tipo,nivel);
+                    pokemano_has_pokedexDAO.insertPokemano(id);
                     break;
                 case 2:
-                    atualizarNivelPokemano();
+                    System.out.println("-> Segue abaixo, lista de pokemons disponíveis para selecao: \n");
+                    pokemanoDAO.selectPokemano();
+                    System.out.print("-> Digite o ID do pokemano que quer atualizar o nível: ");
+                    int idPokemano = scanner.nextInt();
+                    System.out.print("-> Novo nivel do pokemano: ");
+                    int nivelNovo = scanner.nextInt();
+                    pokemanoDAO.updateNivelPokemano(idPokemano,nivelNovo);
                     break;
                 case 3:
                     pokemano_has_pokedexDAO.selectPokemano_has_Pokedex();
-
                     break;
                 case 4:
-                    removerPokemano();
+                    System.out.println("-> Segue abaixo, lista de pokemons disponíveis para selecao: \n");
+                    pokemanoDAO.selectPokemano();
+                    System.out.println("-> Informe o ID do pokemano que vc quer remover: ");
+                    int idPokemanoRemovido = scanner.nextInt();
+                    pokemanoDAO.deletePokemon(idPokemanoRemovido);
                     break;
                 case 5:
                     running = false;
@@ -122,26 +140,6 @@ public class Main {
         scanner.close();
     }
 
-
-
-
-    private static void removerPokemano (){
-        System.out.println("-> Segue abaixo, lista de pokemos disponíveis para selecao: \n");
-        pokemanoDAO.selectPokemano();
-        System.out.println("-> Informe o ID do pokemano que vc quer remover: ");
-        int idPokemanoRemovido = scanner.nextInt();
-        pokemanoDAO.deletePokemon(idPokemanoRemovido);
-    }
-
-    private static void atualizarNivelPokemano () {
-        System.out.println("-> Segue abaixo, lista de pokemos disponíveis para selecao: \n");
-        pokemanoDAO.selectPokemano();
-        System.out.print("-> Digite o ID do pokemano que quer atualizar o nível: ");
-        int idPokemano = scanner.nextInt();
-        System.out.print("-> Novo nivel do pokemano: ");
-        int nivelNovo = scanner.nextInt();
-        pokemanoDAO.updateNivelPokemano(idPokemano,nivelNovo);
-    }
 
 
 //    private static boolean sair() {

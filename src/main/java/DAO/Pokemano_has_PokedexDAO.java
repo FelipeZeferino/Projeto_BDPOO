@@ -95,18 +95,27 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
     public ArrayList<Pokemano_has_Pokedex> selectPokemano_has_Pokedex(int TreinadorId) {
         ArrayList<Pokemano_has_Pokedex> pokemanoHasPokedexes = new ArrayList<>();
         connectToDB();
-        String sql = "SELECT * FROM Pokemano_has_Pokedex WHERE TreinadorID = ?";
+        String sql = "SELECT * FROM Pokemano_has_Pokedex WHERE pokedex_ID = ?";
 
         try {
-            st = con.createStatement();
-            rs = st.executeQuery(sql);
-            pst.setInt(2, TreinadorId);
+
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, TreinadorId);
+            rs = pst.executeQuery();
+
+//            pst = con.prepareStatement(sql);
+//            pst.setInt(1, TreinadorId);
+//            pst.execute();
+//
+//            st = con.createStatement();
+//            pst.setInt(1,TreinadorId);
+//            rs = st.executeQuery(sql);
 
             System.out.println("Lista de Pokemanos na Pokedex: ");
 
             while (rs.next()) {
 
-                Pokemano_has_Pokedex pokedexAux = new Pokemano_has_Pokedex(rs.getInt("id"), rs.getInt("treinador_ID"));
+                Pokemano_has_Pokedex pokedexAux = new Pokemano_has_Pokedex(rs.getInt("pokedex_ID"), rs.getInt("pokemano_ID"));
 
                 System.out.println("ID dos Pokemons da Pokedex:  " + pokedexAux.getPokemano_ID());
                 System.out.println("ID da pokedex: " + pokedexAux.getPokedex_ID());
