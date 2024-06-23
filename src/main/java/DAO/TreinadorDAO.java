@@ -36,13 +36,13 @@ public class TreinadorDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    public boolean insertTreinadorNovo (String nome){
+    public boolean insertTreinadorNovo (String nome, int ID){
         connectToDB();
-        String sql = "INSERT INTO Treinador (nome) values(?)";
+        String sql = "INSERT INTO Treinador (nome,Equipe_ID) values(?,?)";
         try {
             pst = con.prepareStatement(sql);
             pst.setString(1,nome);
-
+            pst.setInt(2,ID);
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -59,28 +59,6 @@ public class TreinadorDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    public boolean insertTreinadorEquipe (int ID){
-        connectToDB();
-        String sql = "INSERT INTO Treinador (Equipe_ID) values(?)";
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setInt(1,ID);
-
-            pst.execute();
-            sucesso = true;
-        } catch (SQLException exc) {
-            System.out.println("Erro: " + exc.getMessage());
-            sucesso = false;
-        } finally {
-            try {
-                con.close();
-                pst.close();
-            } catch (SQLException exc) {
-                System.out.println("Erro: " + exc.getMessage());
-            }
-        }
-        return sucesso;
-    }
 
     //UPDATE
     public boolean updateTreinadorNome(int id, String nome) {
@@ -93,7 +71,7 @@ public class TreinadorDAO extends ConnectionDAO{
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {
-            System.out.println("Erro = " + ex.getMessage());
+            System.out.println("Erro: " + ex.getMessage());
             sucesso = false;
         } finally {
             try {
@@ -139,14 +117,16 @@ public class TreinadorDAO extends ConnectionDAO{
             st = con.createStatement();
             rs = st.executeQuery(sql);
 
+            System.out.println("--------------------------------");
             System.out.println("Lista de treinadores: ");
+            System.out.println("--------------------------\n");
 
             while (rs.next()) {
 
                 Treinador treinadorAux = new Treinador(rs.getInt("id"), rs.getString("nome"),rs.getInt("Equipe_ID"));
 
                 System.out.println("ID do Treinador: " + treinadorAux.getId());
-                System.out.println("Nome: " + treinadorAux.getNome());
+                System.out.println("Nome do Treinador: " + treinadorAux.getNome());
                 System.out.println("ID da Equipe: " + treinadorAux.getEquipe_ID());
                 System.out.println("--------------------------------");
 

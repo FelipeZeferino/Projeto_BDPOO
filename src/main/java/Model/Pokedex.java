@@ -1,5 +1,5 @@
 package Model;
-public class Pokedex {
+public class Pokedex{
     private int id;
     private int treinador_ID;
 
@@ -9,6 +9,11 @@ public class Pokedex {
         this.id = id;
         this.treinador_ID = treinador_ID;
     }
+
+    public Pokedex(int treinador_ID) {
+        this.treinador_ID = treinador_ID;
+    }
+
 
     // Getters
     public int getId() {

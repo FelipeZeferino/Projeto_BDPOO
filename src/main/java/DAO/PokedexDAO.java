@@ -35,6 +35,29 @@ public class PokedexDAO extends ConnectionDAO{
         return sucesso;
     }
 
+    public boolean insertPokedex2(int ID) {
+
+        connectToDB();
+
+        String sql = "INSERT INTO Pokedex (treinador_ID) values(?)";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, ID);
+            pst.execute();
+            sucesso = true;
+        } catch (SQLException exc) {
+            System.out.println("Erro: " + exc.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch (SQLException exc) {
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
+        return sucesso;
+    }
 
 
     //DELETE
@@ -70,14 +93,15 @@ public class PokedexDAO extends ConnectionDAO{
             st = con.createStatement();
             rs = st.executeQuery(sql);
 
+            System.out.println("--------------------------------");
             System.out.println("Lista de Pokedex: ");
 
             while (rs.next()) {
 
                 Pokedex pokedexAux = new Pokedex(rs.getInt("id"), rs.getInt("treinador_ID"));
 
-                System.out.println("ID = " + pokedexAux.getId());
-                System.out.println("Treinador_ID = " + pokedexAux.getTreinador_ID());
+                System.out.println("ID Pokedex: " + pokedexAux.getId());
+                System.out.println("Treinador_ID: " + pokedexAux.getTreinador_ID());
                 System.out.println("--------------------------------");
 
                 pokedexs.add(pokedexAux);

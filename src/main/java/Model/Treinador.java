@@ -6,6 +6,8 @@ public class Treinador {
     private int equipe_ID;
 
 
+
+
     // Construtor
     public Treinador(int id, String nome, int equipe_ID) {
         this.id = id;
@@ -13,8 +15,10 @@ public class Treinador {
         this.equipe_ID = equipe_ID;
     }
 
-    public Treinador(String nome) {
+    public Treinador(String nome, int equipe_ID) {
         this.nome = nome;
+        this.equipe_ID = equipe_ID;
+
     }
 
     //Getters

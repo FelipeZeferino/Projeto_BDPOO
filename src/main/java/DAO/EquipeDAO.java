@@ -92,6 +92,7 @@ public class EquipeDAO extends ConnectionDAO{
             st = con.createStatement();
             rs = st.executeQuery(sql);
 
+            System.out.println("--------------------------------");
             System.out.println("Lista de Equipes: ");
 
             while (rs.next()) {
