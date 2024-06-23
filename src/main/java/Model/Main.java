@@ -34,24 +34,26 @@ public class Main {
 
         while (running) {
 
-            // Menu inicial
-            System.out.println("---------- Bem vindo, ao menu! ----------");
+            // Menu 1
+            System.out.println("\n");
+            System.out.println("---------- Bem vindo, ao menu! ----------\n");
 
-            System.out.println("-> Iniciando Cadastro do Primeiro Treinador:");
+            System.out.println("-> Iniciando Cadastro do Primeiro Treinador:\n");
+
             cadastroTreinador();
 
 
 
-            // Menu 3
-            System.out.println("Muito bem! Vc passou da etapa inicial! Agora vc pode escolher uma das opções abaixo!");
-            System.out.println("\n");
-            System.out.println("--------------------------\n");
+            // Menu 2
+            System.out.println("--------------------------------");
+            System.out.println("Muito bem! Você passou da etapa inicial! Agora você pode escolher uma das opções abaixo!");
+            System.out.println("--------------------------------");
             System.out.println(" 1. Adicionar um novo Treinador");
             System.out.println(" 2. Atualizar o nivel de algum Pokemon");
             System.out.println(" 3. Mostrar todos os seus Pokemanos");
             System.out.println(" 4. Remover Pokemano");
             System.out.println(" 5. Sair");
-            System.out.println("--------------------------\n");
+            System.out.println("--------------------------------");
 
             int userInput;
             if(scanner.hasNextInt()) {
@@ -94,50 +96,54 @@ public class Main {
         System.out.print("-> Qual o nome do Treinador?\n");
         String nomeNovoTreinador = scanner.nextLine();
 
-        System.out.println("-> Segue abaixo, algumas equipes disponíveis para escolha: ");
+
+        System.out.println("\n-> Segue abaixo, algumas equipes disponíveis para escolha: ");
         equipeDAO.selectEquipe();
-        System.out.println("--------------------------\n");
+        System.out.println("\n--------------------------------");
 
-        System.out.println("-> Informe o ID da equipe que vc quer ingressar: ");
+        System.out.println("-> Informe o ID da equipe que vc quer ingressar:\n");
         int idEquipeSelecionada = scanner.nextInt();
-
-
 
         Treinador treinador = new Treinador(nomeNovoTreinador, idEquipeSelecionada);
         treinadorDAO.insertTreinador(treinador);
 
-        System.out.println("--------------------------\n");
-        System.out.println("-> Segue abaixo, informações Treinador:");
-        System.out.println("--------------------------\n");
-        treinadorDAO.selectTreinador();
-        System.out.println("--------------------------\n");
+//        System.out.println("--------------------------------");
+//        System.out.println("-> Segue abaixo, informações Treinador:");
+//        treinadorDAO.selectTreinador();
+//        System.out.println("\n--------------------------------");
 
+        Pokedex pokedex1 = new Pokedex(treinador.getId());
+        pokedexDAO.insertPokedex(pokedex1);
+       // System.out.println("O id da sua Pokedex é: " + pokedex1.getId());
 
-        Pokedex pokedex = new Pokedex(treinador.getId());
-        pokedexDAO.insertPokedex(pokedex);
-
-        System.out.println("--------------------------\n");
-        System.out.println("-> Segue abaixo, lista de pokedex:");
-        pokedexDAO.selectPokedex();
-        System.out.println("--------------------------\n");
-
-
-        System.out.println("--------------------------\n");
-        System.out.println("-> Segue abaixo, lista de pokemons disponíveis para selecao:");
+//        pokedexDAO.selectPokedex();
+//        System.out.println("\n--------------------------------");
         pokemanoDAO.selectPokemano();
-        System.out.println("--------------------------\n");
+        System.out.println("\n--------------------------------");
 
-        System.out.println("-> Informe o ID do pokemano que vc quer adicionar na sua pokedex: ");
+        System.out.println("-> Informe o ID do pokemano que vc quer adicionar na sua pokedex: \n");
         int idPokemanoSelecionado = scanner.nextInt();
 
-        Pokemano_has_Pokedex pokemano_has_pokedex = new Pokemano_has_Pokedex(idPokemanoSelecionado,pokedex.getId());
-        pokemano_has_pokedexDAO.insertPokemanoPokedex(idPokemanoSelecionado, pokedex.getId());
 
-        System.out.println("-> Listando a tabela pokemano_has_pokedexDAO");
-        pokemano_has_pokedexDAO.selectPokemano_has_Pokedex();
+        pokedexDAO.selectPokedex();
+        System.out.println("\n--------------------------------");
 
+        System.out.println("Informe o ID da pokedex que vc quer inserir o pokemon novo:");
+        int idPokedex = scanner.nextInt();
+
+
+        Pokemano_has_Pokedex pokemano_has_pokedex = new Pokemano_has_Pokedex(idPokemanoSelecionado,idPokedex);
+        pokemano_has_pokedexDAO.insertPokemano_has_Pokedex(pokemano_has_pokedex);
+
+
+        System.out.println("--------------------------------");
         System.out.println("-> Seu pokemano foi adicionado a sua pokedex!");
-        System.out.println("--------------------------\n");
+        System.out.println("--------------------------------");
+
+        pokedexDAO.selectPokedex();
+        System.out.println("\n--------------------------------");
+        pokemano_has_pokedexDAO.selectPokemano_has_Pokedex();
+        System.out.println("\n--------------------------------");
 
 
     }

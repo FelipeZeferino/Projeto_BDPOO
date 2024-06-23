@@ -1,7 +1,7 @@
 package Model;
 public class Treinador {
 
-    private int id;
+    public static int id;
     private String nome;
     private int equipe_ID;
 

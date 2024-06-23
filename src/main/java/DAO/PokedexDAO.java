@@ -94,15 +94,16 @@ public class PokedexDAO extends ConnectionDAO{
             rs = st.executeQuery(sql);
 
             System.out.println("--------------------------------");
-            System.out.println("Lista de Pokedex: ");
+            System.out.println("-> Lista de Pokedex: ");
+            System.out.println("--------------------------------");
 
             while (rs.next()) {
 
                 Pokedex pokedexAux = new Pokedex(rs.getInt("id"), rs.getInt("treinador_ID"));
 
-                System.out.println("ID Pokedex: " + pokedexAux.getId());
+                System.out.println("\nID Pokedex: " + pokedexAux.getId());
                 System.out.println("Treinador_ID: " + pokedexAux.getTreinador_ID());
-                System.out.println("--------------------------------");
+
 
                 pokedexs.add(pokedexAux);
             }

@@ -123,12 +123,3 @@ insert into pokemano (nome,tipo,nivel) values ('Pokemon C', 'Tipo C', 10);
 insert into pokemano (nome,tipo,nivel) values ('Pokemon D', 'Tipo D', 10);
 
 
-select * from equipe;
-select * from treinador;
-select * from pokedex;
-select * from pokemano_has_pokedex;
-select * from pokemano;
-select * from pokemano_has_pokedex;
-select * from habilidade;
-
-

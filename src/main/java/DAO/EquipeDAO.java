@@ -93,16 +93,16 @@ public class EquipeDAO extends ConnectionDAO{
             rs = st.executeQuery(sql);
 
             System.out.println("--------------------------------");
-            System.out.println("Lista de Equipes: ");
+            System.out.println("-> Lista de Equipes:");
+            System.out.println("--------------------------------");
 
             while (rs.next()) {
 
                 Equipe equipeAux = new Equipe(rs.getInt("id"), rs.getString("nome"));
 
-                System.out.println("--------------------------------");
-                System.out.println("ID Equipe: " + equipeAux.getId());
+
+                System.out.println("\nID Equipe: " + equipeAux.getId());
                 System.out.println("Nome Equipe: " + equipeAux.getNome());
-                System.out.println("--------------------------------");
 
                 equipes.add(equipeAux);
             }

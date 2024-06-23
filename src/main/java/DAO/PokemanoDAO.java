@@ -96,18 +96,18 @@ public class PokemanoDAO extends ConnectionDAO {
             rs = st.executeQuery(sql);
 
             System.out.println("--------------------------------");
-            System.out.println("Lista de Pokemanos: ");
-            System.out.println("--------------------------\n");
+            System.out.println("-> Lista de Pokemanos: ");
+            System.out.println("--------------------------------");
 
             while (rs.next()) {
 
                 Pokemano pokemanoAux = new Pokemano(rs.getInt("id"), rs.getString("nome"),  rs.getString("tipo"),rs.getInt("nivel"));
 
-                System.out.println("ID do Pokemano: " + pokemanoAux.getId());
+                System.out.println("\nID do Pokemano: " + pokemanoAux.getId());
                 System.out.println("Nome do Pokemano: " + pokemanoAux.getNome());
                 System.out.println("Tipo do Pokemano: " + pokemanoAux.getTipo());
                 System.out.println("Nivel do Pokemano: " + pokemanoAux.getNivel());
-                System.out.println("--------------------------------");
+
 
                 pokemanos.add(pokemanoAux);
             }

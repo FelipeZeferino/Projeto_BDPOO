@@ -118,17 +118,18 @@ public class TreinadorDAO extends ConnectionDAO{
             rs = st.executeQuery(sql);
 
             System.out.println("--------------------------------");
-            System.out.println("Lista de treinadores: ");
-            System.out.println("--------------------------\n");
+            System.out.println("-> Lista de treinadores: ");
+            System.out.println("--------------------------------");
 
             while (rs.next()) {
 
                 Treinador treinadorAux = new Treinador(rs.getInt("id"), rs.getString("nome"),rs.getInt("Equipe_ID"));
 
-                System.out.println("ID do Treinador: " + treinadorAux.getId());
+
+                System.out.println("\nID do Treinador: " + treinadorAux.getId());
                 System.out.println("Nome do Treinador: " + treinadorAux.getNome());
                 System.out.println("ID da Equipe: " + treinadorAux.getEquipe_ID());
-                System.out.println("--------------------------------");
+
 
                 treinadores.add(treinadorAux);
             }

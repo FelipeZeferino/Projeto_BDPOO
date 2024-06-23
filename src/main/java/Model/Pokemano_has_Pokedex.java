@@ -10,6 +10,9 @@ public class Pokemano_has_Pokedex {
         this.pokedex_ID = pokedex_ID;
     }
 
+    public Pokemano_has_Pokedex(int pokemano_ID) {
+        this.pokemano_ID = pokemano_ID;
+    }
 
     // Getters
     public int getPokemano_ID() {

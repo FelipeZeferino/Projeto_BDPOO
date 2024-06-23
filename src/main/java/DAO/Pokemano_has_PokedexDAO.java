@@ -35,14 +35,13 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    public boolean insertPokemanoPokedex (int ID1, int ID2) {
+    public boolean insertPokemano (int ID) {
         connectToDB();
 
-        String sql = "INSERT INTO Pokemano_has_Pokedex (pokemano_ID,pokedex_ID) values(?,?)";
+        String sql = "INSERT INTO Pokemano_has_Pokedex (pokemano_ID) values(?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, ID1);
-            pst.setInt(2, ID2);
+            pst.setInt(1, ID);
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -71,14 +70,15 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
 
             System.out.println("--------------------------------");
             System.out.println("Lista de Pokemanos na Pokedex: ");
+            System.out.println("--------------------------------");
 
             while (rs.next()) {
 
-                Pokemano_has_Pokedex pokedexAux = new Pokemano_has_Pokedex(rs.getInt("id"), rs.getInt("treinador_ID"));
+                Pokemano_has_Pokedex pokedexAux = new Pokemano_has_Pokedex(rs.getInt("pokemano_ID"), rs.getInt("Pokedex_ID"));
 
-                System.out.println("ID dos Pokemons da Pokedex:  " + pokedexAux.getPokemano_ID());
+                System.out.println("\nID dos Pokemons da Pokedex:  " + pokedexAux.getPokemano_ID());
                 System.out.println("ID da pokedex: " + pokedexAux.getPokedex_ID());
-                System.out.println("--------------------------------");
+
             }
             sucesso = true;
         } catch (SQLException e) {
