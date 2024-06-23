@@ -1,13 +1,12 @@
 package Model;
-
 public class Pokedex {
     private int id;
     private int treinador_ID;
 
 
     // Construtor
-    public Pokedex(int id, int treinador_ID) {
-        this.id = id;
+    public Pokedex(int treinador_ID) {
+        this.id = 1;
         this.treinador_ID = treinador_ID;
     }
 

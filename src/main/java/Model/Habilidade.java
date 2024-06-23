@@ -5,6 +5,7 @@ public class Habilidade {
     private int dano;
     private String nome;
     private String tipo_de_dano;
+    public static int SkillCounter;
 
 
     // Construtor
@@ -14,6 +15,7 @@ public class Habilidade {
         this.nome = nome;
         this.tipo_de_dano = tipo_de_dano;
     }
+
 
     // Getters
 

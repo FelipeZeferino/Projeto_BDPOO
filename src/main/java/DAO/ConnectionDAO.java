@@ -11,14 +11,14 @@ public abstract class ConnectionDAO {
 
     String database = "mydb";//nome do BD
     String user = "root";
-    String password = "Ba@1123456";
+    String password = "felipe123";
     String url = "jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
 
 
     public void connectToDB() {
         try {
             con = DriverManager.getConnection(url, user, password);
-            System.out.println("Conexao deu certo!");
+//            System.out.println("Conexao deu certo!");
         } catch(SQLException exc) {
             System.out.println("Erro: " + exc.getMessage());
         }

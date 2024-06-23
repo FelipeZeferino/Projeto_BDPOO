@@ -1,8 +1,6 @@
 package DAO;
 
-import Model.Pokedex;
 import Model.Pokemano_has_Habilidade;
-import Model.Pokemano_has_Pokedex;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,7 +14,7 @@ public class Pokemano_has_HabilidadeDAO extends ConnectionDAO{
 
         connectToDB();
 
-        String sql = "INSERT INTO Pokemano_has_Pokedex (pokemano_ID, habilidade_ID) values(?,?)";
+        String sql = "INSERT INTO Pokemano_has_Habilidade (pokemano_ID, Habilidade_ID) values(?,?)";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1,pokemano_has_habilidade.getPokemano_ID());
@@ -55,8 +53,8 @@ public class Pokemano_has_HabilidadeDAO extends ConnectionDAO{
 
                 Pokemano_has_Habilidade habilidadeAux = new Pokemano_has_Habilidade(rs.getInt("id"), rs.getInt("treinador_ID"));
 
-                System.out.println("id dos Pokemons da Pokedex:  " + habilidadeAux.getPokemano_ID());
-                System.out.println("Id da pokedex: " + habilidadeAux.getHabilidade_ID());
+                System.out.println("ID dos Pokemons da Pokedex:  " + habilidadeAux.getPokemano_ID());
+                System.out.println("ID da pokedex: " + habilidadeAux.getHabilidade_ID());
                 System.out.println("--------------------------------");
             }
             sucesso = true;

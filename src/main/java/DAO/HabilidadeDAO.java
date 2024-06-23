@@ -1,8 +1,6 @@
 package DAO;
 
-
-import org.example.Classes.Habilidade;
-
+import Model.Habilidade;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -79,12 +77,12 @@ public class HabilidadeDAO extends ConnectionDAO {
 
             while (rs.next()) {
 
-                Habilidade habilidadeAux = new Habilidade(rs.getInt("id"), rs.getInt("dano"),  rs.getString("nome"),rs.getString("tipo_de_dano"));
+                Habilidade habilidadeAux = new Habilidade(rs.getInt("ID"), rs.getInt("Dano"),  rs.getString("Nome"),rs.getString("Tipo_de_Dano"));
 
                 System.out.println("id = " + habilidadeAux.getId());
-                System.out.println("nome = " + habilidadeAux.getDano());
-                System.out.println("Tipo = " + habilidadeAux.getNome());
-                System.out.println("Nivel = " + habilidadeAux.getTipo_de_dano());
+                System.out.println("Dano = " + habilidadeAux.getDano());
+                System.out.println("Nome = " + habilidadeAux.getNome());
+                System.out.println("Tipo = " + habilidadeAux.getTipo_de_dano());
                 System.out.println("--------------------------------");
 
                 habilidades.add(habilidadeAux);

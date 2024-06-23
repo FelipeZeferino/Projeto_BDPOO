@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.Pokedex;
+import Model.Pokemano;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class PokedexDAO extends ConnectionDAO{
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {
-            System.out.println("Erro = " + ex.getMessage());
+            System.out.println("Erro: " + ex.getMessage());
             sucesso = false;
         } finally {
             try {
@@ -74,10 +75,10 @@ public class PokedexDAO extends ConnectionDAO{
 
             while (rs.next()) {
 
-                Pokedex pokedexAux = new Pokedex(rs.getInt("id"), rs.getInt("treinador_ID"));
+                Pokedex pokedexAux = new Pokedex(rs.getInt("treinador_ID"));
 
-                System.out.println("id = " + pokedexAux.getId());
-                System.out.println("treinador_ID = " + pokedexAux.getTreinador_ID());
+                System.out.println("ID = 1");
+                System.out.println("Treinador_ID = " + pokedexAux.getTreinador_ID());
                 System.out.println("--------------------------------");
 
                 pokedexs.add(pokedexAux);
@@ -95,6 +96,43 @@ public class PokedexDAO extends ConnectionDAO{
             }
         }
         return pokedexs;
+    }
+
+    public ArrayList<Pokemano> selectAllPokemons() {
+        ArrayList<Pokemano> pokemons = new ArrayList<>();
+        connectToDB();
+        String sql = "SELECT * FROM pokemano WHERE ID IN ( SELECT Pokemano_ID FROM pokemano_has_pokedex WHERE Pokedex_ID = 1)";
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+
+            System.out.println("Lista de Pokedex: ");
+
+            while (rs.next()) {
+
+                Pokemano PokemonAux = new Pokemano(rs.getInt("ID"), rs.getString("Nome"), rs.getString("Tipo"), rs.getInt("Nivel"));
+
+                System.out.println("ID = " + PokemonAux.getId());
+                System.out.println("Nome = " + PokemonAux.getNome());
+                System.out.println("Tipo = " + PokemonAux.getTipo());
+                System.out.println("Nivel = " + PokemonAux.getNivel());
+                System.out.println("--------------------------------");
+
+                pokemons.add(PokemonAux);
+            }
+            sucesso = true;
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                st.close();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        }
+        return pokemons;
     }
 }
 

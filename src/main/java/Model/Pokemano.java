@@ -1,7 +1,5 @@
 package Model;
 
-import DAO.ConnectionDAO;
-
 public class Pokemano {
     private int id;
     private String nome;

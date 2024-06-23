@@ -1,7 +1,7 @@
 package Model;
 public class Treinador {
 
-    private int id;
+    public static int id = 1;
     private String nome;
     private int equipe_ID;
 
@@ -13,6 +13,10 @@ public class Treinador {
         this.equipe_ID = equipe_ID;
     }
 
+
+
+
+
     //Getters
     public int getId() {
         return id;
@@ -23,4 +27,5 @@ public class Treinador {
     public int getEquipe_ID() {
         return equipe_ID;
     }
+    public void setNome(String nome){ this.nome = nome;}
 }

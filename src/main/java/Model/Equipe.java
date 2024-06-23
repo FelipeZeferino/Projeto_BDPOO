@@ -11,9 +11,7 @@ public class Equipe {
         this.nome = nome;
     }
 
-    public Equipe(String nome) {
-        this.nome = nome;
-    }
+
 
     // Getters
     public int getId() {
