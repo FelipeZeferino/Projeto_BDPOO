@@ -1,5 +1,6 @@
 package DAO;
 
+import Model.Pokemano;
 import Model.Pokemano_has_Pokedex;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
     //SELECT
     public ArrayList<Pokemano_has_Pokedex> selectPokemano_has_Pokedex() {
         ArrayList<Pokemano_has_Pokedex> pokemanoHasPokedexes = new ArrayList<>();
+        ArrayList<Pokemano> lista = new ArrayList<>();
         connectToDB();
         String sql = "SELECT * FROM Pokemano_has_Pokedex";
 
@@ -72,10 +74,9 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
 
             while (rs.next()) {
 
-                Pokemano_has_Pokedex pokedexAux = new Pokemano_has_Pokedex(rs.getInt("id"), rs.getInt("treinador_ID"));
+                Pokemano_has_Pokedex pokedexAux = new Pokemano_has_Pokedex(rs.getInt("Pokemano_ID"), rs.getInt("Pokedex_ID"));
 
                 System.out.println("ID dos Pokemons da Pokedex:  " + pokedexAux.getPokemano_ID());
-                System.out.println("ID da pokedex: " + pokedexAux.getPokedex_ID());
                 System.out.println("--------------------------------");
             }
             sucesso = true;
@@ -118,7 +119,6 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
                 Pokemano_has_Pokedex pokedexAux = new Pokemano_has_Pokedex(rs.getInt("pokedex_ID"), rs.getInt("pokemano_ID"));
 
                 System.out.println("ID dos Pokemons da Pokedex:  " + pokedexAux.getPokemano_ID());
-                System.out.println("ID da pokedex: " + pokedexAux.getPokedex_ID());
                 System.out.println("--------------------------------");
             }
             sucesso = true;

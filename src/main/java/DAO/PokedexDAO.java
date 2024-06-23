@@ -74,9 +74,9 @@ public class PokedexDAO extends ConnectionDAO{
 
             while (rs.next()) {
 
-                Pokedex pokedexAux = new Pokedex(rs.getInt("id"), rs.getInt("treinador_ID"));
+                Pokedex pokedexAux = new Pokedex(rs.getInt("treinador_ID"));
 
-                System.out.println("ID = " + pokedexAux.getId());
+                System.out.println("ID = 1");
                 System.out.println("Treinador_ID = " + pokedexAux.getTreinador_ID());
                 System.out.println("--------------------------------");
 

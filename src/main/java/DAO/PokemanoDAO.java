@@ -32,6 +32,7 @@ public class PokemanoDAO extends ConnectionDAO {
             try {
                 con.close();
                 pst.close();
+                System.out.println("Adicionado!");
             } catch (SQLException exc) {
                 System.out.println("Erro: " + exc.getMessage());
             }

@@ -42,7 +42,6 @@ public class Main {
         pokedexDAO.selectPokedex();
         pokemano_has_pokedexDAO.selectPokemano_has_Pokedex();
         pokemanoDAO.selectPokemano();
-//        Treinador.id++;
         // Menu inicial
         System.out.println("---------- Bem-vindo ao menu! ----------");
 
@@ -57,9 +56,8 @@ public class Main {
         Treinador treinador = new Treinador(Treinador.id, nomeNovoTreinador, idEquipeSelecionada);
 
         treinadorDAO.insertTreinador(treinador);
-        Pokedex pokedex1 = new Pokedex(treinador.getId(), treinador.getId()); //pokedex do treinador cadastrado tem o mesmo id dele
+        Pokedex pokedex1 = new Pokedex(treinador.getId());
         pokedexDAO.insertPokedex(pokedex1);
-        Treinador.id++; //Ao cadastrar o primeiro treinador ele acrescenta ao contador Treinador que é static e não depende de instancias do objeto
         System.out.println("O id da sua Pokedex é: " + pokedex1.getId());
 
         //Selecao primeiro pokemon
@@ -67,8 +65,8 @@ public class Main {
         pokemanoDAO.selectPokemano();
         System.out.println("-> Informe o ID do pokemon que você quer adicionar na sua pokedex: ");
         int idPokemanoSelecionado = scanner.nextInt();
-        Pokemano_has_Pokedex pk1 = new Pokemano_has_Pokedex(pokedex1.getId(), idPokemanoSelecionado);
-        pokemano_has_pokedexDAO.insertPokemano_has_Pokedex(pk1);
+//        Pokemano_has_Pokedex pk1 = new Pokemano_has_Pokedex(pokedex1.getId(), idPokemanoSelecionado);
+        pokemano_has_pokedexDAO.insertPokemano(idPokemanoSelecionado);
         System.out.println("-> Seu pokemano foi adicionado a sua pokedex!");
         System.out.println("--------------------------\n");
         pokedexDAO.selectPokedex();
@@ -82,17 +80,16 @@ public class Main {
 
             // Menu 3
             System.out.println("--------------------------\n");
-            System.out.println(" 1. Adicionar um novo Pokemano");
+            System.out.println(" 1. Adicionar um novo Pokemon");
             System.out.println(" 2. Atualizar o nivel de algum Pokemon");
-            System.out.println(" 3. Mostrar todos os seus Pokemanos");
-            System.out.println(" 4. Remover Pokemano");
+            System.out.println(" 3. Mostrar todos os seus Pokemons");
+            System.out.println(" 4. Remover Pokemon");
             System.out.println(" 5. Sair");
             System.out.println("--------------------------\n");
 
 
-            int userInput;
-            userInput = scanner.nextInt();
-            //scanner.nextLine();
+            int userInput = scanner.nextInt();
+            scanner.nextLine();
 
             switch (userInput) {
                 case 1:
@@ -106,8 +103,9 @@ public class Main {
                     System.out.println("Entre com o nível do Pokemon:");
                     int nivel = scanner.nextInt();
 
-                    Pokemano NewPokemon = new Pokemano(id,nome,tipo,nivel);
-                    pokemano_has_pokedexDAO.insertPokemano(id);
+                    Pokemano NewPokemon = new Pokemano(id,nome,tipo,nivel);//Primeiro de tudo: ao Criar um pokemon, ele Nao vai diretamente para sua pokedex, ele vai para lista de okemons
+                    pokemanoDAO.insertPokemano(NewPokemon);
+
                     break;
                 case 2:
                     System.out.println("-> Segue abaixo, lista de pokemons disponíveis para selecao: \n");
