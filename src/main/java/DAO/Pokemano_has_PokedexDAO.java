@@ -36,6 +36,29 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
         return sucesso;
     }
 
+    public boolean deletePokemon(int id) {
+        connectToDB();
+        String sql = "\n" +
+                "DELETE FROM pokemano_has_pokedex WHERE Pokemano_ID = ? AND Pokedex_ID = 1";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.execute();
+            sucesso = true;
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch (SQLException exc) {
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
+        return sucesso;
+    }
+
     public boolean insertPokemano (int ID) {
         connectToDB();
 
@@ -104,13 +127,6 @@ public class Pokemano_has_PokedexDAO extends ConnectionDAO{
             pst.setInt(1, TreinadorId);
             rs = pst.executeQuery();
 
-//            pst = con.prepareStatement(sql);
-//            pst.setInt(1, TreinadorId);
-//            pst.execute();
-//
-//            st = con.createStatement();
-//            pst.setInt(1,TreinadorId);
-//            rs = st.executeQuery(sql);
 
             System.out.println("Lista de Pokemanos na Pokedex: ");
 

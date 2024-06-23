@@ -16,6 +16,7 @@ public class Treinador {
 
 
 
+
     //Getters
     public int getId() {
         return id;
@@ -26,4 +27,5 @@ public class Treinador {
     public int getEquipe_ID() {
         return equipe_ID;
     }
+    public void setNome(String nome){ this.nome = nome;}
 }

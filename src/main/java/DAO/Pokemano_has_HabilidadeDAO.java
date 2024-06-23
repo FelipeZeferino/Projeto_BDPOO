@@ -14,7 +14,7 @@ public class Pokemano_has_HabilidadeDAO extends ConnectionDAO{
 
         connectToDB();
 
-        String sql = "INSERT INTO Pokemano_has_Pokedex (pokemano_ID, habilidade_ID) values(?,?)";
+        String sql = "INSERT INTO Pokemano_has_Habilidade (pokemano_ID, Habilidade_ID) values(?,?)";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1,pokemano_has_habilidade.getPokemano_ID());

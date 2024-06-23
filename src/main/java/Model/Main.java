@@ -30,6 +30,8 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
 
+
+
     public static void main(String[] args) {
         boolean running = true;
 
@@ -53,19 +55,17 @@ public class Main {
         equipeDAO.selectEquipe();
         System.out.println("-> Informe o ID da equipe que vc quer ingressar: ");
         int idEquipeSelecionada = scanner.nextInt();
-        Treinador treinador = new Treinador(Treinador.id, nomeNovoTreinador, idEquipeSelecionada);
+        Treinador treinador = new Treinador(1,nomeNovoTreinador, idEquipeSelecionada);
 
         treinadorDAO.insertTreinador(treinador);
         Pokedex pokedex1 = new Pokedex(treinador.getId());
         pokedexDAO.insertPokedex(pokedex1);
-        System.out.println("O id da sua Pokedex é: " + pokedex1.getId());
 
         //Selecao primeiro pokemon
         System.out.println("-> Segue abaixo lista de pokemons disponíveis para seleção:");
         pokemanoDAO.selectPokemano();
         System.out.println("-> Informe o ID do pokemon que você quer adicionar na sua pokedex: ");
         int idPokemanoSelecionado = scanner.nextInt();
-//        Pokemano_has_Pokedex pk1 = new Pokemano_has_Pokedex(pokedex1.getId(), idPokemanoSelecionado);
         pokemano_has_pokedexDAO.insertPokemano(idPokemanoSelecionado);
         System.out.println("-> Seu pokemano foi adicionado a sua pokedex!");
         System.out.println("--------------------------\n");
@@ -80,11 +80,16 @@ public class Main {
 
             // Menu 3
             System.out.println("--------------------------\n");
-            System.out.println(" 1. Adicionar um novo Pokemon");
-            System.out.println(" 2. Atualizar o nivel de algum Pokemon");
-            System.out.println(" 3. Mostrar todos os seus Pokemons");
-            System.out.println(" 4. Remover Pokemon");
-            System.out.println(" 5. Sair");
+            System.out.println(" 1. Adicionar um novo Pokemon ao banco de Pokemons");
+            System.out.println(" 2. Adicionar um novo Pokemon a sua Pokedex");
+            System.out.println(" 3. Remover Pokemon da Pokedex");
+            System.out.println(" 4. Mostrar todos os Pokemons da sua Pokedex");
+            System.out.println(" 5. Atualizar o nivel de algum Pokemon");
+            System.out.println(" 6. Criar uma nova habilidade");
+            System.out.println(" 7. Adicionar uma habilidade a algum Pokemon");
+            System.out.println(" 8. Para alterar seu nome de treinador");
+            System.out.println(" 9. Criar novo treinador");
+            System.out.println(" 10. Sair");
             System.out.println("--------------------------\n");
 
 
@@ -110,23 +115,66 @@ public class Main {
                 case 2:
                     System.out.println("-> Segue abaixo, lista de pokemons disponíveis para selecao: \n");
                     pokemanoDAO.selectPokemano();
-                    System.out.print("-> Digite o ID do pokemano que quer atualizar o nível: ");
+                    System.out.print("-> Digite o ID do pokemano que deseja adicionar a Pokedex: ");
                     int idPokemano = scanner.nextInt();
-                    System.out.print("-> Novo nivel do pokemano: ");
-                    int nivelNovo = scanner.nextInt();
-                    pokemanoDAO.updateNivelPokemano(idPokemano,nivelNovo);
+                    pokemano_has_pokedexDAO.insertPokemano(idPokemano);
+
                     break;
                 case 3:
+                    System.out.println("-> Informe o ID do pokemano que vc quer remover: ");
                     pokemano_has_pokedexDAO.selectPokemano_has_Pokedex();
+                    int idPokemanoRemovido = scanner.nextInt();
+                    pokemano_has_pokedexDAO.deletePokemon(idPokemanoRemovido);
                     break;
                 case 4:
-                    System.out.println("-> Segue abaixo, lista de pokemons disponíveis para selecao: \n");
-                    pokemanoDAO.selectPokemano();
-                    System.out.println("-> Informe o ID do pokemano que vc quer remover: ");
-                    int idPokemanoRemovido = scanner.nextInt();
-                    pokemanoDAO.deletePokemon(idPokemanoRemovido);
+                    System.out.println("listar todos os pokemons da pokedex");
+                    pokedexDAO.selectAllPokemons();
                     break;
                 case 5:
+                    System.out.println("-> Segue abaixo, lista de pokemons disponíveis para selecao: \n");
+                    pokemanoDAO.selectPokemano();
+                    System.out.print("-> Digite o ID do pokemano que deseja alterar o nivel: ");
+                    id = scanner.nextInt();
+                    System.out.print("-> Novo nivel do pokemano: ");
+                    int nivelNovo = scanner.nextInt();
+                    pokemanoDAO.updateNivelPokemano(nivelNovo,id);
+                    break;
+                case 6:
+                    System.out.println("Criar habilidade");
+                    System.out.println("Entre com o nome da habilidade:");
+                    String SkillName = scanner.nextLine();
+                    System.out.println("Entre com o tipo da habilidade:");
+                    String SkillType = scanner.nextLine();
+                    System.out.println("Entre com o dano da habilidade:");
+                    int SkillDmg = scanner.nextInt();
+                    Habilidade habilidade = new Habilidade(Habilidade.SkillCounter,SkillDmg,SkillName,SkillType);
+                    habilidade.increaseCounter();
+                    habilidadeDAO.insertHabilidade(habilidade);
+                    System.out.println("Habilidade Criada!");
+                    break;
+                case 7:
+                    System.out.println("Adicionar habilidade a algum pokemon");
+                    System.out.println("Lista de Habilidades disponiveis");
+                    habilidadeDAO.selectHabilidade();
+                    System.out.println("-> Digite o ID da habilidade que deseja adicionar");
+                    int SkillID = scanner.nextInt();
+                    System.out.println("Lista de Pokemons disponiveis");
+                    pokemanoDAO.selectPokemano();
+                    System.out.println("A qual pokemon deseja adicionar?");
+                    int choice = scanner.nextInt();
+                    Pokemano_has_Habilidade PokemonSkill = new Pokemano_has_Habilidade(choice, SkillID);
+                    pokemano_has_habilidadeDAO.insertPokemano_has_Habilidade(PokemonSkill);
+                    break;
+                case 8:
+                    System.out.println("Alterar Nome de treinador:");
+                    System.out.println("Digite seu novo nome de treinador!");
+                    String newName = scanner.nextLine();
+                    treinador.setNome(newName);
+                    treinadorDAO.updateTreinadorNome(treinador.getId(), newName);
+                    break;
+                case 9:
+                    break;
+                case 10:
                     running = false;
                     break;
 
@@ -137,21 +185,4 @@ public class Main {
         }
         scanner.close();
     }
-
-
-
-//    private static boolean sair() {
-//        while (true) {
-//            System.out.print("-> Ja vai? (sim/nao): ");
-//            String resposta = scanner.nextLine().toLowerCase();
-//
-//            if (resposta.equals("sim") || resposta.equals("s")) {
-//                return false;
-//            } else if (resposta.equals("nao") || resposta.equals("n")) {
-//                System.out.println("Cancelado!\n");
-//                return true;
-//            }
-//        }
-//    }
-
 }

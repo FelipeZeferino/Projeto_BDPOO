@@ -5,14 +5,19 @@ public class Habilidade {
     private int dano;
     private String nome;
     private String tipo_de_dano;
+    public static int SkillCounter;
 
 
     // Construtor
     public Habilidade(int id, int dano, String nome, String tipo_de_dano) {
-        this.id = id;
+        SkillCounter = id;
         this.dano = dano;
         this.nome = nome;
         this.tipo_de_dano = tipo_de_dano;
+    }
+
+    public void increaseCounter(){
+        SkillCounter++;
     }
 
     // Getters
